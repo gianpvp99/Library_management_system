@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Library_management_system.Application.Commands;
-using Library_management_system.Application.DTos.Responses;
+using Library_management_system.Application.DTOs;
+using Library_management_system.Application.DTOs.Responses;
 using Library_management_system.Application.Querys;
 using Library_management_system.DOMAIN.Entities;
 using Library_management_system.DOMAIN.Interfaces;
@@ -13,19 +14,19 @@ using System.Threading.Tasks;
 
 namespace Library_management_system.Application.Handlers
 {
-    public class AddPrestamoHandler:IRequestHandler<AddPrestamoCommand, AddPrestamoResponse>
+    public class AddPrestamoHandler:IRequestHandler<AddPrestamoCommand, ResultResponse<List<AddPrestamoResponse>>>
     {
         private readonly IPrestamoRepository _prestamoRepository;
-        //private readonly IMapper _mapper;
-        public AddPrestamoHandler(IPrestamoRepository prestamoRepository/*, IMapper mapper*/)
+        private readonly IMapper _mapper;
+        public AddPrestamoHandler(IPrestamoRepository prestamoRepository, IMapper mapper)
         {
             _prestamoRepository = prestamoRepository;
-            //_mapper = mapper;
+            _mapper = mapper;
         }
 
-        public async Task<AddPrestamoResponse> Handle(AddPrestamoCommand request, CancellationToken cancellationToken)
+        public async Task<ResultResponse<List<AddPrestamoResponse>>> Handle(AddPrestamoCommand request, CancellationToken cancellationToken)
         {
-            //var dto = _mapper.Map<PrestamoEntity>(request);
+            var mapperDTO = _mapper.Map<PrestamoEntity>(request);
             var PrestamoEntity = new PrestamoEntity() { 
                 IdPrestamo = request.IdPrestamo,
                 IdBibliotecario = request.IdPrestamo,
@@ -38,9 +39,10 @@ namespace Library_management_system.Application.Handlers
                 FechaCreacion = request.FechaCreacion,
                 FechaModificacion = request.FechaModificacion,
                 IdBibliotecarioModificacion = request.IdBibliotecarioModificacion};
-            var repository = await _prestamoRepository.AddPrestamo(PrestamoEntity);
-            //var response = _mapper.Map<List<PrestamoEntity>>(repository);
-            return repository;
+            await _prestamoRepository.AddPrestamo(mapperDTO);
+            var response = new ResultResponse<List<AddPrestamoResponse>>() { Data = null, Error = false, Estado = true, Mensaje = "Registro Exitoso" };
+            return response;
+
         }
     }
 }

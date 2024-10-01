@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Library_management_system.Application.Commands;
 using Library_management_system.Application.DTos.Responses;
 using Library_management_system.DOMAIN.Entities;
 using System;
@@ -11,9 +12,9 @@ namespace Library_management_system.Application.Mappers
 {
     public class ConfigurationMapper: Profile
     {
-        ConfigurationMapper()
+        public ConfigurationMapper()
         {
-            CreateMap<PrestamoEntity, AddPrestamoResponse>();
+            CreateMap<PrestamoEntity, AddPrestamoCommand>();
         }
     }
 }

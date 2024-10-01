@@ -1,4 +1,4 @@
-﻿using Library_management_system.Application.DTos.Responses;
+﻿using Library_management_system.Application.DTOs.Responses;
 using Library_management_system.DOMAIN.Entities;
 using Library_management_system.DOMAIN.Interfaces;
 using Library_management_system.Infrastructure.Data;
@@ -19,17 +19,37 @@ namespace Library_management_system.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<AddPrestamoResponse> AddPrestamo(PrestamoEntity data)
+        public async Task AddPrestamo(PrestamoEntity data)
         {
-            var addPrestamo = _dbContext.Prestamos.Add(data);
-            _dbContext.SaveChanges();
-            var response = new AddPrestamoResponse() {Error = false, Mensaje = "Registro exitoso", Estado = "Registrado"};
-            return response;
+            data.FechaCreacion = DateTime.Now;
+            data.Estado = "Aprobado";
+            data.Eliminado = false;
+            await _dbContext.Prestamos.AddAsync(data);
+            await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<List<PrestamoEntity>> GetAllPrestamo()
+        public async Task<List<GetAllPrestamoResponse>> GetAllPrestamo()
         {
-            var response = await _dbContext.Prestamos.ToListAsync();
+            var response = await (from p in _dbContext.Prestamos
+                             join l in _dbContext.Libros
+                             on p.IdLibro equals l.IdLibro
+                             select new GetAllPrestamoResponse()
+                             { 
+                                 IdPrestamo = p.IdPrestamo,
+                                 IdBibliotecario = p.IdBibliotecarioModificacion,
+                                 IdUsuario = p.IdUsuario,
+                                 IdLibro = p.IdLibro,
+                                 Titulo = l.Titulo,
+                                 Categoria = l.Categoria,
+                                 Autor = l.Autor,
+                                 FechaPrestamo = p.FechaPrestamo,
+                                 FechaDevolvucion = p.FechaDevolvucion,
+                                 Estado = p.Estado,
+                                 Eliminado = p.Eliminado,
+                                 FechaCreacion = p.FechaCreacion,
+                                 FechaModificacion = p.FechaModificacion,
+                                 IdBibliotecarioModificacion = p.IdBibliotecarioModificacion
+                             }).ToListAsync();
             return response;
         }
     }

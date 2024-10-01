@@ -1,4 +1,4 @@
-﻿using Library_management_system.Application.DTos.Responses;
+﻿using Library_management_system.Application.DTOs.Responses;
 using Library_management_system.DOMAIN.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ namespace Library_management_system.DOMAIN.Interfaces
 {
     public interface IPrestamoRepository
     {
-        Task<List<PrestamoEntity>> GetAllPrestamo();
-        Task<AddPrestamoResponse> AddPrestamo(PrestamoEntity data);
+        Task<List<GetAllPrestamoResponse>> GetAllPrestamo();
+        Task AddPrestamo(PrestamoEntity data);
     }
 }

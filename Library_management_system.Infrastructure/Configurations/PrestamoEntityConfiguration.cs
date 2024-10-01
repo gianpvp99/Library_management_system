@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Library_management_system.Infrastructure.Configurations
 {
-    internal class SomeEntityConfiguration:IEntityTypeConfiguration<PrestamoEntity>
+    internal class PrestamoEntityConfiguration:IEntityTypeConfiguration<PrestamoEntity>
     {
         public void Configure(EntityTypeBuilder<PrestamoEntity> builder)
         {
@@ -22,4 +22,5 @@ namespace Library_management_system.Infrastructure.Configurations
             // Otras configuraciones de la entidad.
         }
     }
+
 }

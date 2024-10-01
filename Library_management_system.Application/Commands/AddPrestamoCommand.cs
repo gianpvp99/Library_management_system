@@ -1,4 +1,5 @@
-﻿using Library_management_system.Application.DTos.Responses;
+﻿using Library_management_system.Application.DTOs;
+using Library_management_system.Application.DTOs.Responses;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Library_management_system.Application.Commands
 {
-    public class AddPrestamoCommand:IRequest<AddPrestamoResponse>
+    public class AddPrestamoCommand:IRequest<ResultResponse<List<AddPrestamoResponse>>>
     {
         public int? IdPrestamo { get;  set; }
         public int? IdBibliotecario { get;  set; }

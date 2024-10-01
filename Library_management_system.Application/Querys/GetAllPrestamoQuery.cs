@@ -1,4 +1,5 @@
-﻿using Library_management_system.DOMAIN.Entities;
+﻿using Library_management_system.Application.DTOs.Responses;
+using Library_management_system.DOMAIN.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace Library_management_system.Application.Querys
 {
-    public class GetAllPrestamoQuery:IRequest<List<PrestamoEntity>>
+    public class GetAllPrestamoQuery:IRequest<ResultResponse<List<GetAllPrestamoResponse>>>
     {
-        public List<PrestamoEntity> Prestamos { get; set; }
     }
 }

@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library_management_system.Application.DTos.Responses
+namespace Library_management_system.DOMAIN.DTos.Responses
 {
-    public class AddPrestamoResponse
+    public class ResultResponse<T>
     {
         public string? Mensaje { get; set; }
-        public string? Estado {  get; set; }
+        public bool? Estado { get; set; }
         public bool? Error { get; set; }
-        public List<PrestamoEntity>? Data {  get; set; }
+        public T Data { get; set; }
     }
 }

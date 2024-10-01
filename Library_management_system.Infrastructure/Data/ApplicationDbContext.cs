@@ -13,6 +13,7 @@ namespace Library_management_system.Infrastructure.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         public DbSet<PrestamoEntity> Prestamos { get; set; }
+        public DbSet<LibroEntity> Libros { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Usamos la configuración de la entidad Customer.
