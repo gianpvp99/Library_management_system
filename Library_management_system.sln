@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library_management_system.I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library_management_system.Application", "Library_management_system.Application\Library_management_system.Application.csproj", "{82EF141C-5AF7-4BEB-95F8-66A7250DCF88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library_management_system.DomainDTO", "Library_management_system.DomainDTO\Library_management_system.DomainDTO.csproj", "{F30F0AB9-15C1-4B83-B8B2-11B2127C2AC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library_management_system.DTO", "Library_management_system.DomainDTO\Library_management_system.DTO.csproj", "{F30F0AB9-15C1-4B83-B8B2-11B2127C2AC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

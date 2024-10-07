@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Library_management_system.DomainDTO\Library_management_system.DomainDTO.csproj" />
+    <ProjectReference Include="..\Library_management_system.DomainDTO\Library_management_system.DTO.csproj" />
   </ItemGroup>
 
 </Project>

@@ -13,7 +13,8 @@ namespace Library_management_system.Application.Mappers
     {
         public ConfigurationMapper()
         {
-            CreateMap<PrestamoEntity, AddPrestamoCommand>();
+            //La estructura es la siguiente CreateMap<Proviene,Destino>()
+            CreateMap<AddPrestamoCommand,PrestamoEntity >();
         }
     }
 }
