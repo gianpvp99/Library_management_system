@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Library_management_system.Application.Commands
 {
-    public class AddPrestamoCommand:IRequest<ResultResponse<List<AddPrestamoResponse>>>
+    public class AddPrestamoCommand:IRequest<ResultResponse<AddPrestamoResponse>>
     {
         public int? IdPrestamo { get;  set; }
         public int? IdBibliotecario { get;  set; }

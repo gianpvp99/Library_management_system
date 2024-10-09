@@ -13,8 +13,9 @@ namespace Library_management_system.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<PrestamoEntity> builder)
         {
-            builder.ToTable("Prestamo");
-            builder.HasKey(e => e.IdPrestamo);
+            builder.ToTable("Prestamo"); //Definir el nombre Tabla 
+            builder.HasKey(e => e.IdPrestamo); //Definir llave primaria
+            builder.Property(e => e.IdPrestamo).UseIdentityColumn(1, 1); //Definir como identity 1,1
             //builder.HasOne(e => e.IdPrestamo)
             //   .WithOne(u => u.IdPrestamo)
             //   .HasForeignKey<PrestamoEntity>(e => e.IdPrestamo);

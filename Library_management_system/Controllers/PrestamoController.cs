@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
 using Library_management_system.Application.Commands;
-using Library_management_system.Application.Handlers;
 using Library_management_system.Application.Querys;
 using Library_management_system.DOMAIN.Entities;
 using Library_management_system.DOMAIN.Interfaces;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library_management_system.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PrestamoController:ControllerBase
     {
         private readonly IMediator _mediator;
@@ -20,6 +20,7 @@ namespace Library_management_system.Controllers
         }
         [Route("GetAllPrestamo")]
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetAllPrestamo()
         {
             try
@@ -35,6 +36,7 @@ namespace Library_management_system.Controllers
 
         [Route("AddPrestamo")]
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddPrestamo(AddPrestamoCommand request)
         {
             try
