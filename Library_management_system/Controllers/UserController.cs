@@ -23,12 +23,26 @@ namespace Library_management_system.Controllers
         {
             try
             {
-
-                //var res = await _mediator.Send(request);
                 var res = await _mediator.Send(new TokenCommand() { Correo = "gianpvp99@gmail.com", IdUsuario = 100});
                 //var token = _jwtTokenGenerator.GenerateToken("1", "gianpvp99@gmail.com");
 
                 return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        [Route("RefreshToken")]
+        [HttpPost]
+        public async Task<IActionResult> RefreshToken(string refreshToken)
+        {
+            try
+            {
+
+
+                return Ok(true);
             }
             catch (Exception ex)
             {

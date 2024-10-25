@@ -17,24 +17,34 @@ namespace Library_management_system.Infrastructure.Security
         public JwtTokenGenerator(IOptions<JwtSettings> jwtSettings) => _jwtSettings = jwtSettings.Value;
         public string GenerateToken(int userId, string userEmail)
         {
+           
+            // CREACIÓN DE CLAIMS //
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
+                //new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.NameId, userId.ToString()),
+                new Claim(JwtRegisteredClaimNames.Name, "Nombres"),
+                new Claim("apellido", "Apellidos"),
                 new Claim(JwtRegisteredClaimNames.Email, userEmail),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(ClaimTypes.Role, Guid.NewGuid().ToString())
             };
 
+            // CREACIÓN DEL HEADER //
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var token = new JwtSecurityToken(
+
+            // CREACIÓN DEL PAYLOAD //
+            var payload = new JwtSecurityToken(
                 issuer: _jwtSettings.Issuer,
                 audience: _jwtSettings.Audience,
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(_jwtSettings.ExpiryInMinutes),
                 signingCredentials: credentials
             );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            // CREACIÓN DEL TOKEN //
+            var token = new JwtSecurityTokenHandler().WriteToken(payload);
+            return token;
         }
     }
 }

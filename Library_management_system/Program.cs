@@ -92,6 +92,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 app.UseRequestTiming(); //Middleware para medir tiempo de respuesta
+app.JwtMiddleware(); //Middleware para validar token
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
